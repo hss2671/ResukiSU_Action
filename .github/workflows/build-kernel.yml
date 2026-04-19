@@ -304,10 +304,11 @@ jobs:
         fi
         rm -rf AnyKernel3/.git* AnyKernel3/README.md
 
-        - name: Make Custom-Anykernel3
+          - name: Make Custom-Anykernel3
       if: env.CHECK_FILE_IS_OK == 'true' && env.USE_CUSTOM_ANYKERNEL3 == 'true'
       run: |
         cd $GITHUB_WORKSPACE/kernel_workspace
+        # 修正：判断 CUSTOM_ANYKERNEL3_SOURCE 是否包含 git
         if [[ "${{ env.CUSTOM_ANYKERNEL3_SOURCE }}" =~ "git" ]]; then
             if [[ "${{ env.CUSTOM_ANYKERNEL3_SOURCE }}" == *".tar.gz" ]]; then
                 wget -O AnyKernel3.tar.gz "${{ env.CUSTOM_ANYKERNEL3_SOURCE }}"
@@ -321,10 +322,16 @@ jobs:
             mkdir AnyKernel3
             unzip AnyKernel3.zip -d AnyKernel3/
         fi
+        
+        # 拷贝生成的内核镜像
         cp android-kernel/out/arch/${{ env.ARCH }}/boot/${{ env.KERNEL_IMAGE_NAME }} AnyKernel3/
+        
+        # 修正：判断 DTBO 是否存在的逻辑
         if [ "${{ env.CHECK_DTBO_IS_OK }}" = "true" ]; then
             cp android-kernel/out/arch/${{ env.ARCH }}/boot/dtbo.img AnyKernel3/
         fi
+        
+        # 清理多余文件
         rm -rf AnyKernel3/.git* AnyKernel3/README.md
 
 
