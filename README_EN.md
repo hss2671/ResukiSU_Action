@@ -119,17 +119,14 @@ Enable ResukiSU for troubleshooting kernel failures or compiling the kernel sepa
 
 #### ResukiSU Branch or Tag
 
-[KernelSU 1.0 no longer supports non-GKI kernels](https://github.com/tiann/KernelSU/issues/1705). The last supported version is [v0.9.5](https://github.com/tiann/KernelSU/tree/v0.9.5), please make sure to use the correct branch.
+Select the branch or tag of ResukiSU:
 
-Select the branch or tag of KernelSU:
-
-- ~~main branch (development version): `KERNELSU_TAG=main`~~
-- Latest TAG (stable version): `KERNELSU_TAG=v0.9.5`
+- main branch (development version): `KERNELSU_TAG=main`
 - Specify the TAG (such as `v0.5.2`): `KERNELSU_TAG=v0.5.2`
 
 #### ResukiSU Manager signature size and hash
 
-Customize the size and hash values of the KernelSU manager signature, if you don't need to customize the manager then please leave them empty or fill in the official default values:
+Customize the size and hash values of the ResukiSU manager signature, if you don't need to customize the manager then please leave them empty or fill in the official default values:
 
 `KSU_EXPECTED_SIZE=0x033b`
 
@@ -143,13 +140,13 @@ Inject parameters into the defconfig automatically.
 
 ### Add overlayfs Config
 
-This parameter provides support for the KernelSU module and system partition read and write. Inject parameters into Defconfig automatically.
+This parameter provides support for the ResukiSU module and system partition read and write. Inject parameters into Defconfig automatically.
 
-### Apply KernelSU Patch
+### Apply ResukiSU Patch
 
 If kprobe does not work in your kernel (may be an upstream or kernel bug below 4.8), then you can try enabling this parameter
 
-Automatically modify kernel source code to support KernelSU  
+Automatically modify kernel source code to support ResukiSU  
 See also: [Intergrate for non-GKI devices](https://kernelsu.org/guide/how-to-integrate-for-non-gki.html#manually-modify-the-kernel-source)
 
 ### Remove unused packages
